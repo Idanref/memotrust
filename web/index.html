@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>memotrust.ai — verified memory for AI agents</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="sysbar" class="sysbar" aria-label="System status"></div>
+<header class="topbar">
+  <a class="brand" href="#/memory">
+    <span class="logo"><img src="/memotrust-owl.png" alt="" width="26" height="26" style="object-fit:contain;display:block"></span>
+    <span class="mark">memotrust.ai</span>
+  </a>
+  <div id="spaceswitch" class="spaceswitch"></div>
+  <nav class="nav">
+    <a href="#/memory" data-route="memory" class="nav-link"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg><span>Memory</span></a>
+    <a href="#/recall" data-route="recall" class="nav-link"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="8" width="15" height="11" rx="2.5"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.1"/><path d="M9.4 13h.2M14.4 13h.2"/><path d="M3 14v2M21 14v2"/></svg><span>Agent view</span></a>
+    <a href="#/verifiers" data-route="verifiers" class="nav-link"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Verifiers</span></a>
+  </nav>
+  <div class="topsearch">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+    <input id="globalsearch" placeholder="Search memory" autocomplete="off" aria-label="Search memory">
+    <span class="kbd">/</span>
+  </div>
+</header>
+
+<main id="view" aria-live="polite"></main>
+
+<script src="/app.js"></script>
+</body>
+</html>

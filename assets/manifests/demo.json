@@ -1,0 +1,62 @@
+{
+  "batch_id": "memotrust-demo",
+  "output_staging_folder": "assets/demo",
+  "prompts": [
+    {
+      "id": "D01",
+      "filename": "demo-01-hero.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product hero illustration, cinematic dark mode, near-black background with a faint dot grid and soft volumetric light. Concept: an AI agent depicted as a glowing indigo orb offers a floating memory card to a luminous magnifying-glass gateway; clean emerald-green verified cards pass through while a single toxic-red cracked card is caught and stopped at the gate. Glassmorphism, indigo and violet with emerald accents and one controlled toxic-red, ultra-clean, high detail, balanced composition, no text, no watermark, smooth polished, not cluttered.",
+      "saved_path": "assets/demo/demo-01-hero.png"
+    },
+    {
+      "id": "D02",
+      "filename": "demo-02-propose.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background with faint dot grid and soft volumetric light. A single glowing indigo AI-agent orb emits one floating translucent memory card toward the viewer, hopeful and neutral. Glassmorphism, indigo-violet palette with a hint of emerald, minimal, centered, high detail, no text, no watermark, smooth polished premium.",
+      "saved_path": "assets/demo/demo-02-propose.png"
+    },
+    {
+      "id": "D03",
+      "filename": "demo-03-quarantine.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background with faint dot grid. A single translucent memory card with an ominous toxic-red inner glow and a hairline crack, suspended and softly locked inside a glass quarantine holding cell, dimmed and set apart from clean cards. Tense but elegant, indigo-violet with controlled toxic-red, glassmorphism, centered, high detail, no text, no watermark, smooth polished.",
+      "saved_path": "assets/demo/demo-03-quarantine.png"
+    },
+    {
+      "id": "D04",
+      "filename": "demo-04-verify-scan.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background. A large glowing magnifying glass scans a suspicious translucent memory card; a beam of evidence light and fine data streams pass through the lens, dramatic and precise, revealing the card's flaw. Indigo-violet with emerald scan light, glassmorphism, volumetric rays, centered, high detail, no text, no watermark, smooth polished premium.",
+      "saved_path": "assets/demo/demo-04-verify-scan.png"
+    },
+    {
+      "id": "D05",
+      "filename": "demo-05-refuted.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background. A toxic-red poisoned memory card shatters and dissolves into fine particles as it is stopped by a luminous gate, blocked and rejected, its red light fading out. Decisive and clean, indigo-violet environment with controlled toxic-red dissolving, glassmorphism, high detail, centered, no text, no watermark, smooth polished.",
+      "saved_path": "assets/demo/demo-05-refuted.png"
+    },
+    {
+      "id": "D06",
+      "filename": "demo-06-verified-stream.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background with faint dot grid. A calm orderly stream of clean emerald-green verified memory cards, each bearing a crisp check glow, flows outward from a luminous vault to several glowing agent orbs, trustworthy and serene. Indigo-violet with emerald verified accents, glassmorphism, soft volumetric light, high detail, no text, no watermark, smooth polished premium.",
+      "saved_path": "assets/demo/demo-06-verified-stream.png"
+    },
+    {
+      "id": "D07",
+      "filename": "demo-07-contrast-split.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product illustration, cinematic dark mode, near-black background, clean vertical split composition. Left half: chaos, a toxic-red poisoned memory spreading agent to agent, several orbs turning red, tangled. Right half: calm order, agent orbs glowing clean emerald-green behind a luminous magnifying-glass shield gate that blocks the red. Clear before/after contrast, indigo-violet with emerald and controlled toxic-red, glassmorphism, high detail, no text, no watermark, smooth polished.",
+      "saved_path": "assets/demo/demo-07-contrast-split.png"
+    },
+    {
+      "id": "D08",
+      "filename": "demo-08-vault-hero.png",
+      "status": "done",
+      "prompt": "Premium 2026 SaaS product hero illustration, cinematic dark mode, near-black background with faint dot grid and soft volumetric light. A serene glowing vault of verified memories: neat rows of translucent emerald-tinged memory cards, a subtle magnifying-glass emblem of trust hovering above. Confident, premium, indigo-violet with emerald verified accents, glassmorphism, high detail, balanced, no text, no watermark, smooth polished, landing-page worthy.",
+      "saved_path": "assets/demo/demo-08-vault-hero.png"
+    }
+  ]
+}

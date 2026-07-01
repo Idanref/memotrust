@@ -1,0 +1,12 @@
+{
+  "batch_id": "memotrust-pipeline-test",
+  "output_staging_folder": "assets/logo",
+  "prompts": [
+    {
+      "id": "000",
+      "filename": "pipeline-test.png",
+      "status": "pending",
+      "prompt": "A premium 3D app icon for a developer tool named memotrust. Concept: a sleek, friendly investigator examining a glowing translucent memory crystal through a magnifying glass; inside the lens a small green verified checkmark glows. Modern glossy 3D render in the style of a top-tier App Store icon, soft studio lighting with a gentle rim light, rounded squircle composition, deep indigo to violet gradient background. Minimal, centered, no text, 2026 modern SaaS aesthetic, smooth and polished, high detail, not cartoonish or cringy."
+    }
+  ]
+}

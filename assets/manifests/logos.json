@@ -1,0 +1,111 @@
+{
+  "batch_id": "memotrust-logos",
+  "output_staging_folder": "assets/logo",
+  "prompts": [
+    {
+      "id": "L01",
+      "filename": "logo-01-investigator-mascot.png",
+      "status": "done",
+      "prompt": "A premium 3D app icon for an AI developer tool named memotrust. A sleek, friendly investigator character (subtle fedora and slim dark glasses) examining a glowing translucent memory crystal through a magnifying glass; inside the lens a crisp emerald-green verified checkmark glows. Glossy, rounded, high-end App Store icon render, soft studio lighting with gentle rim light, squircle composition, deep indigo-to-violet gradient background. Minimal, centered, no text, 2026 modern SaaS aesthetic, smooth and polished, tasteful, not cartoonish or cringy.",
+      "saved_path": "assets/logo/logo-01-investigator-mascot.png"
+    },
+    {
+      "id": "L02",
+      "filename": "logo-02-lens-memory-orb.png",
+      "status": "done",
+      "prompt": "A premium 3D app icon: a glossy glass magnifying glass inspecting a floating translucent memory orb made of frosted glass and soft light; an emerald-green verified checkmark glows softly inside the orb and reflects in the lens. No characters. High-end squircle App Store icon, deep indigo-violet gradient background, volumetric studio lighting, subtle caustics, ultra-clean, centered, no text, 2026 modern SaaS, smooth polished premium.",
+      "saved_path": "assets/logo/logo-02-lens-memory-orb.png"
+    },
+    {
+      "id": "L03",
+      "filename": "logo-03-lens-checkmark-negative.png",
+      "status": "done",
+      "prompt": "A minimal flat vector SaaS logomark: a clean geometric magnifying glass whose circular lens contains a checkmark formed elegantly from negative space. Single indigo-to-violet gradient, on pure white, generous whitespace, precise geometry, Stripe / Linear / Vercel level of refinement, timeless, no text, centered, crisp, modern 2026 brand mark.",
+      "saved_path": "assets/logo/logo-03-lens-checkmark-negative.png"
+    },
+    {
+      "id": "L04",
+      "filename": "logo-04-shield-lens.png",
+      "status": "done",
+      "prompt": "A premium 3D app icon: a softly rounded trust shield rendered in glossy glass, a magnifying glass overlapping it, and a subtle glowing memory node inside; an emerald-green verified glow. Deep indigo and violet with an emerald accent, squircle App Store icon, studio lighting, clean and confident, centered, no text, 2026 modern SaaS, polished, premium, not cheesy.",
+      "saved_path": "assets/logo/logo-04-shield-lens.png"
+    },
+    {
+      "id": "L05",
+      "filename": "logo-05-detective-silhouette.png",
+      "status": "done",
+      "prompt": "A refined minimal logomark: a bold, elegant investigator silhouette (fedora and coat collar) integrated with a magnifying glass, high-contrast flat vector, solid deep indigo on pure white, timeless and iconic, strong negative space, no gradients, no text, centered, the kind of clean monochrome mark a top design studio would ship, 2026 modern.",
+      "saved_path": "assets/logo/logo-05-detective-silhouette.png"
+    },
+    {
+      "id": "L06",
+      "filename": "logo-06-memory-chip-verified.png",
+      "status": "done",
+      "prompt": "A premium 3D app icon: a soft translucent glass memory chip / neural core glowing gently, with a small emerald-green verified badge nestled at its corner and a faint magnifying-glass reflection. Violet-indigo gradient background, squircle App Store icon, volumetric light, futuristic but warm, centered, no text, 2026 modern SaaS, smooth polished premium.",
+      "saved_path": "assets/logo/logo-06-memory-chip-verified.png"
+    },
+    {
+      "id": "L07",
+      "filename": "logo-07-m-monogram-lens.png",
+      "status": "done",
+      "prompt": "A modern geometric monogram logomark for memotrust: a confident lowercase letter m whose final stroke curves into a magnifying-glass loop. Minimal, precise, single indigo-to-violet gradient on white, generous whitespace, Linear / Stripe refinement, no text besides the mark itself, centered, crisp, 2026 modern SaaS brand mark.",
+      "saved_path": "assets/logo/logo-07-m-monogram-lens.png"
+    },
+    {
+      "id": "L08",
+      "filename": "logo-08-fingerprint-memory.png",
+      "status": "done",
+      "prompt": "A sleek futuristic app icon: a glowing fingerprint whose ridges dissolve into fine circuit and memory lines, inspected by a subtle magnifying glass, an emerald-green verified spark at the center. Cyan-to-indigo gradient, dark squircle background, high-tech 2026 aesthetic, clean and premium, centered, no text, smooth polished, not busy.",
+      "saved_path": "assets/logo/logo-08-fingerprint-memory.png"
+    },
+    {
+      "id": "L09",
+      "filename": "logo-09-trust-seal.png",
+      "status": "done",
+      "prompt": "A premium 3D app icon reinterpreting a certified trust seal for the modern era: a glossy medallion with a magnifying-glass motif and a clean checkmark, rendered in matte indigo with a single restrained emerald-green accent (no gold, no cheese). Squircle App Store icon, soft studio light, confident and minimal, centered, no text, 2026 modern SaaS, polished premium.",
+      "saved_path": "assets/logo/logo-09-trust-seal.png"
+    },
+    {
+      "id": "L10",
+      "filename": "logo-10-isometric-vault.png",
+      "status": "done",
+      "prompt": "A clean isometric 3D app icon: a glowing translucent memory vault / database cube with a magnifying glass verifying one highlighted node that shows an emerald-green check. Indigo-violet gradient, soft light, crisp isometric geometry, developer-tool feel, squircle, centered, no text, 2026 modern SaaS, smooth polished premium.",
+      "saved_path": "assets/logo/logo-10-isometric-vault.png"
+    },
+    {
+      "id": "L11",
+      "filename": "logo-11-owl-scrutiny.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark symbolizing wisdom and scrutiny, its two large round eyes subtly reading as magnifying-glass lenses. Refined flat vector with a soft indigo-to-violet gradient, on white, balanced and modern, not cute or childish, strong iconic silhouette, no text, centered, 2026 premium brand mark.",
+      "saved_path": "assets/logo/logo-11-owl-scrutiny.png"
+    },
+    {
+      "id": "L12",
+      "filename": "logo-12-eye-lens-check.png",
+      "status": "done",
+      "prompt": "A sleek futuristic mark: a stylized eye of observation whose iris is a magnifying glass and whose pupil forms a subtle checkmark. Minimal, precise, indigo-violet with an emerald spark, on a clean background, high-tech 2026 SaaS, iconic and simple, no text, centered, smooth polished premium.",
+      "saved_path": "assets/logo/logo-12-eye-lens-check.png"
+    },
+    {
+      "id": "L13",
+      "filename": "logo-13-verified-node-graph.png",
+      "status": "done",
+      "prompt": "A clean developer-brand app icon: a small constellation of connected memory nodes on a dark surface, one node highlighted and stamped with an emerald-green verified check under a subtle magnifying glass, the others dimmed. Indigo glow, near-black squircle background, precise, technical, premium, centered, no text, 2026 modern SaaS, smooth polished.",
+      "saved_path": "assets/logo/logo-13-verified-node-graph.png"
+    },
+    {
+      "id": "L14",
+      "filename": "logo-14-memory-card-check.png",
+      "status": "done",
+      "prompt": "An ultra-clean premium app icon: a single frosted-glass memory card / note being inspected by a magnifying glass, an emerald-green verified checkmark stamped crisply on it. One restrained accent color over a soft indigo-violet gradient, squircle App Store icon, soft studio light, minimal and confident, centered, no text, 2026 modern SaaS, smooth polished premium.",
+      "saved_path": "assets/logo/logo-14-memory-card-check.png"
+    },
+    {
+      "id": "L15",
+      "filename": "logo-15-wordmark-icon-lockup.png",
+      "status": "done",
+      "prompt": "A minimal 2026 SaaS logo lockup on a clean off-white background: to the left a small refined magnifying-glass-plus-checkmark mark in indigo-violet gradient, to the right the lowercase wordmark memotrust set in a modern geometric sans-serif, tasteful letterspacing, emerald-green dot on the letter i. Crisp, premium, balanced, horizontal lockup, Linear / Stripe level polish, correct spelling memotrust.",
+      "saved_path": "assets/logo/logo-15-wordmark-icon-lockup.png"
+    }
+  ]
+}

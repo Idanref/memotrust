@@ -1,0 +1,62 @@
+{
+  "batch_id": "memotrust-owls",
+  "output_staging_folder": "assets/logo/owl-variations",
+  "prompts": [
+    {
+      "id": "OW1",
+      "filename": "owl-emerald.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, its two large round eyes subtly reading as magnifying-glass lenses, flat clean vector, vivid emerald-green to teal gradient, on pure white, balanced modern iconic silhouette, not cute or childish, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-emerald.png"
+    },
+    {
+      "id": "OW2",
+      "filename": "owl-cyan.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, electric cyan to blue gradient, on pure white, balanced modern iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-cyan.png"
+    },
+    {
+      "id": "OW3",
+      "filename": "owl-royal-blue.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, deep royal blue, on pure white, balanced modern iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-royal-blue.png"
+    },
+    {
+      "id": "OW4",
+      "filename": "owl-sunset.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, warm sunset orange to magenta gradient, on pure white, balanced modern iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-sunset.png"
+    },
+    {
+      "id": "OW5",
+      "filename": "owl-magenta.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, magenta to violet gradient, on pure white, balanced modern iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-magenta.png"
+    },
+    {
+      "id": "OW6",
+      "filename": "owl-charcoal.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, solid charcoal near-black monochrome, on pure white, high contrast timeless iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-charcoal.png"
+    },
+    {
+      "id": "OW7",
+      "filename": "owl-amber.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as magnifying-glass lenses, flat clean vector, warm gold to amber gradient, on pure white, balanced modern iconic silhouette, no text, centered, premium 2026 brand mark.",
+      "saved_path": "assets/logo/owl-variations/owl-amber.png"
+    },
+    {
+      "id": "OW8",
+      "filename": "owl-darkmode.png",
+      "status": "done",
+      "prompt": "A minimal geometric owl logomark, two large round eyes reading as glowing magnifying-glass lenses, flat clean vector, soft white and emerald-green glow, on a near-black background, sleek dark-mode brand mark, iconic silhouette, no text, centered, premium 2026.",
+      "saved_path": "assets/logo/owl-variations/owl-darkmode.png"
+    }
+  ]
+}

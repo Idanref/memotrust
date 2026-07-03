@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>memotrust — nothing trusted until verified</title>
+<style>
+  :root {
+    --bg: #0a0b14;
+    --bg2: #0e1020;
+    --grid: rgba(139, 130, 246, 0.06);
+    --ink: #e7e9f3;
+    --muted: #9aa0b8;
+    --indigo: #6d6bf5;
+    --violet: #9b7bff;
+    --emerald: #34d39a;
+    --emerald-dim: rgba(52, 211, 154, 0.14);
+    --red: #ff5470;
+    --red-dim: rgba(255, 84, 112, 0.14);
+    --glass: rgba(255, 255, 255, 0.045);
+    --stroke: rgba(255, 255, 255, 0.09);
+    --loop: 15s;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "SF Pro Display", Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 620px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(109, 107, 245, 0.16), transparent 60%),
+      radial-gradient(900px 500px at 90% 110%, rgba(155, 123, 255, 0.10), transparent 60%),
+      linear-gradient(180deg, var(--bg2), var(--bg));
+    overflow: hidden;
+  }
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(var(--grid) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask: radial-gradient(1000px 600px at 50% 40%, #000 40%, transparent 78%);
+    opacity: 0.7;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    position: relative; z-index: 3;
+    display: flex; align-items: center; gap: 12px;
+    padding: 26px 34px 8px;
+  }
+  .mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--indigo), var(--violet));
+    box-shadow: 0 6px 20px rgba(109, 107, 245, 0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .mark svg { width: 20px; height: 20px; }
+  .brand { font-weight: 650; font-size: 19px; letter-spacing: -0.02em; }
+  .brand b { color: #fff; } .brand span { color: var(--violet); }
+  .tag {
+    margin-left: auto; font-size: 13px; color: var(--muted);
+    letter-spacing: 0.01em; padding-top: 4px;
+  }
+  .tag em { color: var(--emerald); font-style: normal; font-weight: 600; }
+
+  /* ---------- board ---------- */
+  .board {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1.25fr 1fr;
+    align-items: center; gap: 0; padding: 0 30px;
+  }
+  .col { position: relative; height: 340px; display: grid; place-items: center; }
+  .col-label {
+    position: absolute; top: 6px; left: 0; right: 0;
+    text-align: center; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+
+  /* agent orbs */
+  .agent {
+    width: 62px; height: 62px; border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, #b9b6ff, var(--indigo) 62%, #3d3ba8);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 8px 30px rgba(109,107,245,0.5);
+    position: relative;
+  }
+  .agent.stack { position: absolute; }
+  .a1 { top: 60px; left: 26%; } .a2 { bottom: 64px; left: 40%; transform: scale(.86); }
+  .r1 { top: 58px; right: 26%; } .r2 { bottom: 62px; right: 30%; transform: scale(.86); }
+  .agent::after {
+    content: ""; position: absolute; inset: -6px; border-radius: 50%;
+    border: 1px solid rgba(155,123,255,0.35);
+    animation: pulse var(--loop) ease-in-out infinite;
+  }
+  /* recall-side agents get "healthy green" confirmation late in the loop */
+  .r1, .r2 { animation: goodGlow var(--loop) ease-in-out infinite; }
+
+  /* the verify core (magnifying gate) */
+  .core {
+    width: 210px; height: 210px; border-radius: 50%;
+    display: grid; place-items: center; position: relative;
+    background: radial-gradient(circle at 50% 40%, rgba(109,107,245,0.16), transparent 62%);
+    border: 1px solid var(--stroke);
+    box-shadow: inset 0 0 60px rgba(109,107,245,0.16);
+  }
+  .core::before {
+    content: ""; position: absolute; inset: -1px; border-radius: 50%;
+    border: 1px dashed rgba(155,123,255,0.35);
+    animation: spin 26s linear infinite;
+  }
+  .lens { width: 96px; height: 96px; opacity: 0.92; }
+  .scan {
+    position: absolute; width: 210px; height: 210px; border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0 78%, rgba(52,211,154,0.28) 86%, transparent 92%);
+    animation: spin 3.6s linear infinite;
+    mix-blend-mode: screen;
+  }
+
+  /* ---------- traveling memory cards ---------- */
+  .card {
+    position: absolute; z-index: 4;
+    width: 150px; padding: 11px 13px; border-radius: 13px;
+    background: var(--glass); border: 1px solid var(--stroke);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+    font-size: 11.5px; line-height: 1.35;
+    left: 50%; top: 50%;
+  }
+  .card .k { color: var(--muted); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .card .v { color: var(--ink); margin-top: 3px; font-weight: 550; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 9px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px;
+  }
+  .pill.hold { color: #cdb9ff; background: rgba(155,123,255,0.14); border: 1px solid rgba(155,123,255,0.3); }
+  .pill.ok { color: var(--emerald); background: var(--emerald-dim); border: 1px solid rgba(52,211,154,0.4); }
+  .pill.bad { color: var(--red); background: var(--red-dim); border: 1px solid rgba(255,84,112,0.4); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .good  { animation: goodPath var(--loop) cubic-bezier(.6,.05,.3,1) infinite; }
+  .toxic { animation: toxicPath var(--loop) cubic-bezier(.6,.05,.3,1) infinite; }
+  .toxic { border-color: rgba(255,84,112,0.35); box-shadow: 0 12px 34px rgba(255,84,112,0.2), inset 0 1px 0 rgba(255,255,255,0.05); }
+
+  /* caption */
+  .caption {
+    position: relative; z-index: 3; text-align: center; padding: 4px 20px 30px;
+    height: 66px;
+  }
+  .caption .line {
+    position: absolute; left: 0; right: 0; opacity: 0;
+    font-size: 17px; letter-spacing: -0.01em; color: var(--ink);
+    animation: cap var(--loop) ease-in-out infinite;
+  }
+  .caption .line b { color: #fff; } .caption .line .g { color: var(--emerald); font-weight: 650; }
+  .caption .line .r { color: var(--red); font-weight: 650; }
+  .c1 { animation-delay: calc(var(--loop) * 0.00); }
+  .c2 { animation-delay: calc(var(--loop) * 0.24); }
+  .c3 { animation-delay: calc(var(--loop) * 0.48); }
+  .c4 { animation-delay: calc(var(--loop) * 0.72); }
+
+  /* ---------- keyframes ---------- */
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.12);opacity:0} }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* good card: agent -> core (propose), held, verified, flows to recall agents */
+  @keyframes goodPath {
+    0%   { left: 22%; top: 30%; opacity: 0; transform: scale(.9); }
+    6%   { opacity: 1; }
+    18%  { left: 50%; top: 50%; transform: translate(-50%,-64px) scale(1); } /* enter verify, held */
+    42%  { left: 50%; top: 50%; transform: translate(-50%,-64px) scale(1); }
+    58%  { left: 50%; top: 50%; transform: translate(-50%,-64px) scale(1.04); } /* verified */
+    78%  { left: 78%; top: 30%; transform: scale(.94); opacity: 1; }            /* recalled to agents */
+    92%  { left: 78%; top: 30%; opacity: 0; }
+    100% { left: 78%; top: 30%; opacity: 0; }
+  }
+  /* good card pill morphs hold -> ok */
+  .good .pill.hold { animation: holdToOk var(--loop) step-end infinite; }
+  .good .pill.ok   { animation: okReveal var(--loop) step-end infinite; }
+  @keyframes holdToOk { 0%{opacity:1} 52%{opacity:1} 53%{opacity:0} 100%{opacity:0} }
+  @keyframes okReveal { 0%{opacity:0} 52%{opacity:0} 53%{opacity:1} 100%{opacity:1} }
+
+  /* toxic card: agent -> core (propose), held, REFUTED (shatter), blocked (never recalled) */
+  @keyframes toxicPath {
+    0%   { left: 24%; top: 66%; opacity: 0; transform: scale(.9); }
+    8%   { opacity: 1; }
+    20%  { left: 50%; top: 50%; transform: translate(-50%, 60px) scale(1); }  /* enter verify, held */
+    44%  { left: 50%; top: 50%; transform: translate(-50%, 60px) scale(1); }
+    60%  { left: 50%; top: 50%; transform: translate(-50%, 60px) scale(1.05) rotate(-1deg); }
+    66%  { left: 50%; top: 50%; transform: translate(-50%, 60px) scale(0.6) rotate(6deg); opacity: 0; } /* shatter */
+    100% { left: 50%; top: 50%; transform: translate(-50%, 60px) scale(0.6); opacity: 0; }              /* blocked */
+  }
+  .toxic .pill.hold { animation: holdToBad var(--loop) step-end infinite; }
+  .toxic .pill.bad  { animation: badReveal var(--loop) step-end infinite; }
+  @keyframes holdToBad { 0%{opacity:1} 55%{opacity:1} 56%{opacity:0} 100%{opacity:0} }
+  @keyframes badReveal { 0%{opacity:0} 55%{opacity:0} 56%{opacity:1} 64%{opacity:1} 66%{opacity:0} 100%{opacity:0} }
+
+  /* scan ring only active during the verify window */
+  .scan { animation: spin 3.6s linear infinite, scanWin var(--loop) ease-in-out infinite; }
+  @keyframes scanWin { 0%,42%{opacity:0} 48%{opacity:1} 62%{opacity:1} 68%{opacity:0} 100%{opacity:0} }
+
+  /* recall agents flush green right after verified */
+  @keyframes goodGlow {
+    0%,70%{ box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 8px 30px rgba(109,107,245,0.5);
+            background: radial-gradient(circle at 34% 30%, #b9b6ff, var(--indigo) 62%, #3d3ba8); }
+    80%,96%{ box-shadow: 0 0 0 1px rgba(52,211,154,0.5), 0 8px 34px rgba(52,211,154,0.5);
+            background: radial-gradient(circle at 34% 30%, #b7ffe4, var(--emerald) 62%, #128a63); }
+    100%{ box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 8px 30px rgba(109,107,245,0.5);
+            background: radial-gradient(circle at 34% 30%, #b9b6ff, var(--indigo) 62%, #3d3ba8); }
+  }
+
+  /* captions timing (each visible ~22% of loop) */
+  @keyframes cap {
+    0%{opacity:0; transform: translateY(6px)} 3%{opacity:1; transform:none}
+    20%{opacity:1} 24%{opacity:0; transform: translateY(-6px)} 100%{opacity:0}
+  }
+
+  /* blocked gate flash when toxic is refuted */
+  .gate {
+    position: absolute; right: 30%; top: 50%; transform: translateY(-50%);
+    z-index: 5; opacity: 0;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; color: var(--red);
+    padding: 6px 10px; border-radius: 10px;
+    background: var(--red-dim); border: 1px solid rgba(255,84,112,0.4);
+    animation: gateFlash var(--loop) ease-in-out infinite;
+  }
+  @keyframes gateFlash { 0%,60%{opacity:0; transform: translateY(-50%) scale(.9)}
+    64%{opacity:1; transform: translateY(-50%) scale(1)} 82%{opacity:1} 88%{opacity:0} 100%{opacity:0} }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <header>
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/>
+          <path d="M7.8 10.6l1.9 1.9 3.4-3.8" stroke="#34d39a"/>
+        </svg>
+      </div>
+      <div class="brand"><b>memo</b><span>trust</span></div>
+      <div class="tag">Nothing trusted until <em>verified</em>.</div>
+    </header>
+
+    <div class="board">
+      <div class="col">
+        <div class="col-label">Agents propose</div>
+        <div class="agent stack a1"></div>
+        <div class="agent stack a2"></div>
+      </div>
+
+      <div class="col">
+        <div class="col-label">memotrust verifies</div>
+        <div class="core">
+          <div class="scan"></div>
+          <svg class="lens" viewBox="0 0 24 24" fill="none" stroke="#c9c6ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10.5" cy="10.5" r="7"/><line x1="15.8" y1="15.8" x2="21.5" y2="21.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="col-label">Agents recall</div>
+        <div class="agent stack r1"></div>
+        <div class="agent stack r2"></div>
+      </div>
+
+      <!-- traveling cards -->
+      <div class="card good">
+        <div class="k">memory</div>
+        <div class="v">Postgres is the primary datastore</div>
+        <span class="pill hold"><span class="dot"></span>Proposed</span>
+        <span class="pill ok" style="position:absolute"><span class="dot"></span>Verified</span>
+      </div>
+
+      <div class="card toxic">
+        <div class="k">memory</div>
+        <div class="v">Ship secrets in the client bundle</div>
+        <span class="pill hold"><span class="dot"></span>Proposed</span>
+        <span class="pill bad" style="position:absolute"><span class="dot"></span>Disproven</span>
+      </div>
+
+      <div class="gate">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff5470" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".6" fill="#ff5470"/><path d="M10.3 3.6 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0Z"/></svg>
+        Poison blocked
+      </div>
+    </div>
+
+    <div class="caption">
+      <div class="line c1"><b>Agents propose memories</b> — good and bad alike.</div>
+      <div class="line c2">Every memory lands <b>quarantined</b>. Nothing is trusted on arrival.</div>
+      <div class="line c3">Evidence decides: one <span class="g">verified</span>, the poison <span class="r">disproven</span>.</div>
+      <div class="line c4"><b>recall()</b> serves only <span class="g">trusted</span> memory. Poisoning can't spread.</div>
+    </div>
+  </div>
+</body>
+</html>

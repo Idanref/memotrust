@@ -1,6 +1,6 @@
 {
   "name": "memotrust",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Verified memory for AI agents — agents propose, evidence verifies, recall returns only earned trust.",
   "type": "module",
   "license": "MIT",

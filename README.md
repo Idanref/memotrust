@@ -31,13 +31,20 @@ memotrust flips the default: **nothing is trusted on arrival.** A memory reaches
 
 | | |
 |---|---|
-| 🧠 **Trusted recall** | `recall()` returns only verified, fresh, in-scope memory, ranked. No guesses, no stale wins. |
-| 🛡️ **Poison can't spread** | Every new memory is quarantined until proven. One agent's bad note can't become another's fact. |
-| 🔬 **MCP Verifiers** | Read-only checks that turn a claim into trusted knowledge: built in, or connected to a source of truth. |
-| 🔌 **Read-only connectors** | Confirm domain claims against live data. **Mixpanel** built-in; connect any read-only MCP source. |
-| 📊 **Dashboard** | A local UI to review, approve, dispute, and manage every memory and every verifier connection. |
-| 🧾 **Receipts, not vibes** | Every verdict records the query, the reading, and the judgment. Audit *why* anything is trusted. |
-| 📂 **Just files** | Markdown claims plus an append-only log, git-backed. Human-readable, diffable, no database. |
+| <img src="assets/icons/feat/recall.png" width="20">&nbsp; **Trusted recall** | `recall()` returns only verified, fresh, in-scope memory, ranked. No guesses, no stale wins. |
+| <img src="assets/icons/feat/shared.png" width="20">&nbsp; **One shared memory** | Every agent, Claude Code, Cursor, any MCP client, reads and writes the same store. Git-backed, so what your agents know is versioned, diffable, and portable. |
+| <img src="assets/icons/feat/shield.png" width="20">&nbsp; **Poison can't spread** | Every new memory is quarantined until proven. One agent's bad note can't become another's fact. |
+| <img src="assets/icons/feat/verify.png" width="20">&nbsp; **MCP Verifiers** | Read-only checks that turn a claim into trusted knowledge: built in, or connected to a source of truth. |
+| <img src="assets/icons/feat/connect.png" width="20">&nbsp; **Read-only connectors** | Confirm domain claims against live data. **Mixpanel** built-in; connect any read-only MCP source. |
+| <img src="assets/icons/feat/dashboard.png" width="20">&nbsp; **Dashboard** | A local UI to review, approve, dispute, and manage every memory and every verifier connection. |
+| <img src="assets/icons/feat/receipt.png" width="20">&nbsp; **Receipts, not vibes** | Every verdict records the query, the reading, and the judgment. Audit *why* anything is trusted. |
+| <img src="assets/icons/feat/files.png" width="20">&nbsp; **Just files** | Markdown claims plus an append-only log, git-backed. Human-readable, diffable, no database. |
+
+## One memory, every agent
+
+memotrust is the **shared source of truth** for your whole agent fleet. Claude Code, Cursor, and every MCP client read and write the *same* store, so a fact one agent proves, all of them can trust.
+
+And because it's **git-backed**, that memory is versioned, diffable, and portable: branch it, review it, roll it back, sync it however you sync code. It's the home for everything your agents know, and every line of it has earned its place.
 
 ## Quick start
 

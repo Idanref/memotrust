@@ -5,8 +5,7 @@
       "title": "Connected",
       "desc": "Active sources confirming your claims right now.",
       "items": [
-        {"name": "Mixpanel", "icon": "chart-dots", "mcp": true, "verifies": "Confirms growth & metric claims", "status": "active", "access": "read-only", "allowed": ["Run-Query", "Get-Events", "Get-Report", "Get-Metric"]},
-        {"name": "RevenueCat", "icon": "cash", "verifies": "Confirms revenue & subscription claims", "status": "active", "access": "read-only", "allowed": ["GET /subscribers", "GET /metrics"]}
+        {"name": "Mixpanel", "icon": "chart-dots", "mcp": true, "verifies": "Confirms growth & metric claims", "status": "active", "access": "read-only", "allowed": ["Run-Query", "Get-Events", "Get-Report", "Get-Metric"]}
       ]
     },
     {

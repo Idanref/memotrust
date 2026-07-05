@@ -1,48 +1,49 @@
 <div align="center">
 
-<img src="assets/memotrust-icon.png" alt="memotrust" width="132" />
+<img src="assets/memotrust-icon.png" alt="memotrust" width="120" />
 
 # memotrust
 
-### Your agents remember only what's *true*.
+### Verified memory for AI agents — so your agents remember only what's **true**.
 
-**Verified memory for AI agents.** Agents propose memories — evidence verifies them.
-`recall()` returns only what has *earned* trust, so a hallucinated, stale, or
-**poisoned** "fact" never reaches your other agents.
+[![npm](https://img.shields.io/npm/v/memotrust?color=6d6bf5&label=npm)](https://www.npmjs.com/package/memotrust)
+[![license](https://img.shields.io/npm/l/memotrust?color=34d39a)](LICENSE)
+[![MCP](https://img.shields.io/badge/MCP-server-9b7bff)](https://modelcontextprotocol.io)
+[![stars](https://img.shields.io/github/stars/Idanref/memotrust?style=social)](https://github.com/Idanref/memotrust)
+
+Agents propose memories. **Evidence** verifies them. `recall()` returns only what has *earned* trust — so a hallucinated, stale, or **poisoned** "fact" never reaches your other agents.
 
 <br/>
 
-<img src="assets/demo/demo.gif" alt="An agent proposes memories; a poisoned card is caught at the gate while verified memory flows to every agent." width="760" />
+<img src="assets/demo/demo.gif" alt="An agent proposes memories; a poisoned one is caught at the gate while verified memory flows to every agent." width="780" />
 
 <br/>
 
-`npx memotrust install`
+```bash
+npx memotrust install
+```
 
 </div>
 
 ---
 
-## The problem with agent memory
+## Why memotrust
 
-Giving agents a shared memory is a superpower — until it isn't. Every other memory
-layer **trusts whatever the agent writes.** So the moment one agent hallucinates a
-fact, copies a stale number, or reads a poisoned note, that mistake becomes *every*
-agent's "truth" — silently, and forever.
+Give your agents a shared memory and it's a superpower — until one agent hallucinates a fact, copies a stale number, or reads a poisoned note. In every other memory layer, that mistake becomes **every agent's "truth"**, silently, forever. (Memory poisoning is OWASP agentic risk **ASI06**.)
 
-That's not a rough edge. It's an attack surface (memory poisoning is OWASP agentic
-risk **ASI06**) and a correctness bug (agents confidently repeat their own guesses).
+memotrust flips the default: **nothing is trusted on arrival.** A memory reaches `recall()` only after it's **verified against a real source** or **approved by a human**. Trust decays. Disputes withhold. Every verdict keeps a receipt.
 
-## memotrust flips the default
+## What's inside
 
-> **Nothing is trusted on arrival.** A memory reaches `recall()` only after
-> deterministic verification against a real source, or explicit human approval.
-> Trust decays. Disputes withhold. Every verdict keeps an auditable receipt.
-
-- 🛡️ **Poison can't spread** — unverified memories are quarantined, never served. One agent's bad note can't become another agent's fact.
-- ✅ **Only earned trust is recalled** — `recall()` returns verified, fresh, in-scope memory, ranked. No guesses, no stale wins.
-- ⚠️ **Failures come back as warnings** — approaches already disproven return as warnings, so agents don't repeat a known dead end.
-- 🧾 **Receipts, not vibes** — every verdict records the query, the reading, and the judgment. You can audit *why* anything is trusted.
-- 📂 **Just files** — Markdown claims + an append-only JSONL log, git-backed. Human-readable, diffable, tamper-evident. No database.
+| | |
+|---|---|
+| 🧠 **Trusted recall** | `recall()` returns only verified, fresh, in-scope memory — ranked. No guesses, no stale wins. |
+| 🛡️ **Poison can't spread** | Every new memory is quarantined until proven. One agent's bad note can't become another's fact. |
+| 🔬 **Verifiers** | Read-only checks that turn a claim into trusted knowledge — built in, or connected to a source of truth. |
+| 🔌 **Read-only connectors** | Confirm domain claims against live data — **Mixpanel** built-in; connect any read-only MCP source. |
+| 📊 **Dashboard** | A local UI to review, approve, dispute, and manage every memory and every verifier connection. |
+| 🧾 **Receipts, not vibes** | Every verdict records the query, the reading, and the judgment. Audit *why* anything is trusted. |
+| 📂 **Just files** | Markdown claims + an append-only log, git-backed. Human-readable, diffable, no database. |
 
 ## Quick start
 
@@ -50,25 +51,58 @@ risk **ASI06**) and a correctness bug (agents confidently repeat their own guess
 npx memotrust install     # create the store, git-init it, register the MCP with your agent
 ```
 
-That's it. Point Claude Code, Cursor, or any MCP client at it and your agents can
-`propose` and `recall`. The dashboard rides along at **http://localhost:8765**.
+Point **Claude Code**, **Cursor**, or any MCP client at it, and your agents can `propose` and `recall`. The dashboard comes up at **http://localhost:8765**.
 
-<sub>From a checkout instead: `npm install && npx tsx src/cli.ts install`. Memory location resolves `MEMOTRUST_HOME` › a checkout's own `memory/` › `~/.memotrust`.</sub>
+## The dashboard
+
+Everything your agents know — and exactly how much of it is proven. Review the inbox, approve or dispute at a glance, watch trust coverage, and audit any claim's full evidence chain.
+
+<div align="center">
+<img src="assets/dashboard.png" alt="memotrust dashboard — memories grouped by trust: verified, proposed, disproven, approved, with an inbox and live trust coverage." width="840" />
+</div>
+
+## Verifiers — earn trust, read-only
+
+A verifier confirms or refutes a claim against a **source of truth**. It is **always read-only** — it can query, never write, update, or delete.
+
+- **Built in, zero credentials** — check a claim against a file, a URL, or a command:
+  ```yaml
+  check: {"kind": "file", "path": "package.json", "contains": "pnpm"}
+  check: {"kind": "url",  "url": "https://api.example.com/health", "status": 200}
+  ```
+- **Connect a source of truth** — **Mixpanel** is built-in (a read-scoped service account confirms growth & metric claims). Connect any other read-only MCP data source, or let your agent submit a read-only observation — **memotrust decides the verdict, the agent never can.**
+- **Human approval** — anything you'd rather confirm yourself, in one click.
+
+<div align="center">
+<img src="assets/dashboard-verifiers.png" alt="Verifiers page — read-only connectors (Mixpanel, Amplitude, PostHog, GitHub, Human approval) that turn proposed memories into trusted knowledge." width="840" />
+</div>
+
+> `command` checks are **disabled by default** — a poisoned claim must never become code execution. Opt in with `MEMOTRUST_ALLOW_COMMAND_CHECKS=1`.
 
 ## How it works
 
 ```
-agent ──propose()──► [ proposed · quarantined ]
-                            │
-             evidence ──► store judges ──► receipt      (or a human approves)
-                            │
-                     [ trusted ]──recall()──► agents act on it
-                            │
-              60-day decay / human dispute ──► withheld again
+agent ──propose()──►  [ proposed · quarantined ]
+                             │
+              evidence ──►  memotrust judges  ──► receipt      (or a human approves)
+                             │
+                       [ trusted ]──recall()──►  agents act on it
+                             │
+              60-day decay / dispute  ──►  withheld again
 ```
 
-- **The agent is the extractor** — there is no LLM inside the store. Your agent extracts durable facts and proposes them over MCP.
-- **The store is the judge.** To verify, the agent only ever *reads* a source and submits the observation; memotrust compares it to the claim's expectation, decides confirmed/refuted itself, and records the receipt. **An agent cannot fake a verdict.**
+There is **no LLM inside the store** — your agent extracts durable facts and proposes them over MCP; memotrust only ever *judges* the evidence and records the receipt.
+
+## The tools your agent gets
+
+| Tool | What it does |
+|---|---|
+| `recall` | Only trusted + fresh + in-scope memory; disproven approaches come back as **warnings** |
+| `propose` | File a new memory — lands quarantined, never trusted on arrival |
+| `search` | Everything at any trust level, each result labeled with its status |
+| `vocabulary` | Existing spaces + tags, so agents reuse names instead of inventing synonyms |
+| `pending_verifications` | Claims that carry a machine-checkable assertion, awaiting a reading |
+| `submit_evidence` | Submit a read-only observation — memotrust judges, not the agent |
 
 ## memotrust vs. a plain memory layer
 
@@ -80,60 +114,14 @@ agent ──propose()──► [ proposed · quarantined ]
 | "We already tried that" | forgotten | **returned as a warning** |
 | Why is this trusted? | ¯\\\_(ツ)\_/¯ | **an auditable receipt** |
 
-## The tools your agent gets
+## Contributing
 
-| Tool | What it does |
-|---|---|
-| `recall` | Only trusted + fresh + in-scope memory, ranked; disproven approaches come back as warnings |
-| `propose` | File a new memory — lands quarantined, never trusted on arrival |
-| `vocabulary` | Existing spaces + tags, so agents reuse names instead of inventing synonyms |
-| `describe_space` | One-line description when a new space first appears |
-| `search` | Everything at any trust level, each result labeled with its status |
-| `pending_verifications` | Claims with machine-checkable assertions awaiting a reading |
-| `submit_evidence` | Submit a read-only observation — the store judges, not the agent |
+Issues and PRs welcome. `npm test` runs the store + verifier suite; `npm run test:e2e` runs the end-to-end MCP acceptance test. House style: [docs/code-style.md](docs/code-style.md).
 
-## Verification
+<div align="center">
 
-**Built-in, zero credentials** — a claim opts in with a `check` in its frontmatter:
+**If verified memory is something your agents need, [⭐ star the repo](https://github.com/Idanref/memotrust) — it helps a lot.**
 
-```yaml
-check: {"kind": "file", "path": "package.json", "contains": "pnpm"}
-check: {"kind": "url",  "url": "https://api.example.com/health", "status": 200}
-check: {"kind": "command", "run": "node --version", "contains": "v22"}
-```
+[MIT](LICENSE) · built for the [Model Context Protocol](https://modelcontextprotocol.io)
 
-`command` checks are **disabled by default** — a poisoned claim must never become
-code execution from a human's verify click. Opt in with
-`MEMOTRUST_ALLOW_COMMAND_CHECKS=1` (runs without a shell; pipes and redirects in a
-check are inert strings).
-
-**Connected sources** (optional) — e.g. the Mixpanel verifier confirms growth
-claims against live analytics through a read-only service account. Copy
-[.env.example](.env.example) to `.env` and fill in read-scoped credentials.
-
-## Dashboard
-
-`npm run serve` (it also rides along whenever an agent connects). Review the inbox
-(approve/reject, in bulk), watch trust coverage, audit any claim's full evidence
-chain and receipts, and dispute anything that looks wrong.
-
-## Development
-
-```bash
-npm test                     # store + verifier unit tests
-npm run test:e2e             # end-to-end MCP smoke test (8 checks, real stdio, hermetic)
-npm run typecheck
-npm run build                # compile to dist/
-```
-
-`scripts/mcp-smoke-test.ts` (`npm run test:e2e`) speaks real MCP over stdio against a
-throwaway store and must pass against any implementation — it's the acceptance contract.
-
-## Docs
-
-- [docs/features.md](docs/features.md) — what makes it different
-- [docs/code-style.md](docs/code-style.md) — the house style the codebase holds to
-
-## License
-
-[MIT](LICENSE)
+</div>

@@ -187,11 +187,11 @@ function inboxView() {
     </div>
     <a href="#/memory" class="btn inbox-btn">${icon('arrowleft', 15)} Back</a>
   </div>
-  ${grp('Needs your review', 'New memories waiting for a yes or no — approve to make them trusted.', proposed, { bulk: true })}
-  ${grp('Disputed — needs a call', 'Someone flagged a counter-read on a trusted claim. Re-verify or re-affirm to settle it.', disputed)}
-  ${grp('Gone stale — re-test', 'Confidence has expired. Re-check to confirm these still hold.', stale)}
-  ${grp('Disproven', 'Tested and failed — kept as warnings so agents steer clear.', disproven)}
-  ${actionable === 0 && !disproven.length ? `<div class="ibx-empty">${icon('check', 24)}<span>All clear — nothing needs you.</span></div>` : ''}`;
+  ${grp('Needs your review', 'New memories waiting for a yes or no, approve to make them trusted.', proposed, { bulk: true })}
+  ${grp('Disputed, needs a call', 'Someone flagged a counter-read on a trusted claim. Re-verify or re-affirm to settle it.', disputed)}
+  ${grp('Gone stale, re-test', 'Confidence has expired. Re-check to confirm these still hold.', stale)}
+  ${grp('Disproven', 'Tested and failed, kept as warnings so agents steer clear.', disproven)}
+  ${actionable === 0 && !disproven.length ? `<div class="ibx-empty">${icon('check', 24)}<span>All clear, nothing needs you.</span></div>` : ''}`;
 }
 
 /* ---------------- memory ---------------- */
@@ -213,7 +213,7 @@ function memoryView() {
 
   const inboxN = base.filter((c) => ['proposed', 'stale'].includes(effStatus(c)) || c.disputed).length;
   const spaceDesc = state.space !== 'all'
-    ? `<div class="space-desc"><span class="sd-name">${icon('stack', 13)} ${esc(state.space)}</span><input class="sd-input" data-spacedesc="${esc(state.space)}" value="${esc((d.space_desc || {})[state.space] || '')}" placeholder="Describe this space — what is it? e.g. the Acme web app"></div>`
+    ? `<div class="space-desc"><span class="sd-name">${icon('stack', 13)} ${esc(state.space)}</span><input class="sd-input" data-spacedesc="${esc(state.space)}" value="${esc((d.space_desc || {})[state.space] || '')}" placeholder="Describe this space, what is it? e.g. the Acme web app"></div>`
     : '';
 
   const stateOf = (c) => {
@@ -246,7 +246,7 @@ function memoryView() {
   <div class="page-head row-head">
     <div>
       <h1 class="page-title">Agents Memory</h1>
-      <p class="page-sub">Everything your agents know — and exactly how much of it is proven.</p>
+      <p class="page-sub">Everything your agents know, and exactly how much of it is proven.</p>
     </div>
     <a href="#/inbox" class="btn inbox-btn">${icon('inbox', 15)} Inbox${inboxN ? ` <span class="ib-count">${inboxN}</span>` : ''}</a>
   </div>
@@ -420,7 +420,7 @@ function recallView() {
   return `
   <div class="page-head">
     <h1 class="page-title">Agent view</h1>
-    <p class="page-sub">Exactly what an agent gets back when it calls <code>recall()</code> — only memory that has earned trust, plus warnings. Everything unproven or stale is withheld.</p>
+    <p class="page-sub">Exactly what an agent gets back when it calls <code>recall()</code>, only memory that has earned trust, plus warnings. Everything unproven or stale is withheld.</p>
   </div>
   <div class="rcl-bar">
     ${keys.map(scopeSel).join('')}
@@ -453,15 +453,15 @@ function recallResult(res) {
   return `
   <div class="rcl-summary">${icon('robot', 15)}<span>${esc(res.note || '')}</span></div>
   <div class="rcl-sec">
-    <div class="rcl-sec-h ok">${icon('check', 14)} Trusted <span class="rcl-subtle">— the agent acts on these</span><span class="rcl-n">${trusted.length}</span></div>
+    <div class="rcl-sec-h ok">${icon('check', 14)} Trusted <span class="rcl-subtle">, the agent acts on these</span><span class="rcl-n">${trusted.length}</span></div>
     ${trusted.length ? `<div class="rcl-list">${trusted.map(tItem).join('')}</div>`
       : `<div class="rcl-empty">Nothing trusted in this scope yet.</div>`}
   </div>
   ${warnings.length ? `<div class="rcl-sec">
-    <div class="rcl-sec-h no">${icon('alert', 14)} Warnings <span class="rcl-subtle">— the agent is told to avoid these</span><span class="rcl-n">${warnings.length}</span></div>
+    <div class="rcl-sec-h no">${icon('alert', 14)} Warnings <span class="rcl-subtle">, the agent is told to avoid these</span><span class="rcl-n">${warnings.length}</span></div>
     <div class="rcl-list">${warnings.map(wItem).join('')}</div>
   </div>` : ''}
-  <div class="rcl-withheld">${icon('lock', 14)} ${res.withheld_count || 0} withheld — unproven or stale. Agents never see these.</div>`;
+  <div class="rcl-withheld">${icon('lock', 14)} ${res.withheld_count || 0} withheld, unproven or stale. Agents never see these.</div>`;
 }
 
 async function runRecall() {
@@ -493,9 +493,9 @@ function claimView(id) {
   const hasProof = !!proof;
 
   const warn = (st === 'disproven' || st === 'tested-failed')
-    ? `<div class="cl-warn">${icon('alert', 15)} Tested and failed — kept so agents are warned before reusing it.</div>` : '';
+    ? `<div class="cl-warn">${icon('alert', 15)} Tested and failed, kept so agents are warned before reusing it.</div>` : '';
   const disputed = c.disputed
-    ? `<div class="cl-warn cl-disputed">${icon('alert', 15)}<span class="cl-warn-text">Disputed — a counter-read was flagged. Agents won't rely on this until it's re-verified or re-affirmed.</span><button class="btn" data-affirm="${c.id}">Re-affirm</button></div>` : '';
+    ? `<div class="cl-warn cl-disputed">${icon('alert', 15)}<span class="cl-warn-text">Disputed, a counter-read was flagged. Agents won't rely on this until it's re-verified or re-affirmed.</span><button class="btn" data-affirm="${c.id}">Re-affirm</button></div>` : '';
   const notes = c.notes
     ? `<div class="cl-notes">${c.notes.split(/\n\s*\n/).map((para) => `<p>${esc(para.replace(/\s*\n\s*/g, ' '))}</p>`).join('')}</div>` : '';
 
@@ -563,7 +563,7 @@ function claimView(id) {
     <datalist id="cl-tagkeys">${tagKeys.map((k) => `<option value="${esc(k)}">`).join('')}</datalist>`;
 
   const nudge = (st === 'proposed' && !hasProof)
-    ? `<div class="tl-nudge">Not verified yet — connect a verifier or approve it manually to make it trusted.</div>` : '';
+    ? `<div class="tl-nudge">Not verified yet, connect a verifier or approve it manually to make it trusted.</div>` : '';
 
   const related = (state.data.claims || []).filter((o) => o.id !== c.id).map((o) => ({
     o, shared: Object.keys(c.scope || {}).filter((k) => c.scope[k] && o.scope[k] === c.scope[k]),
@@ -608,7 +608,7 @@ function addEvidenceBox(c) {
   return `
   <div class="addev">
     <div class="addev-head">${icon('msg', 15)} Add evidence or context</div>
-    <textarea id="ev-text" class="addev-text" placeholder="What you tested, saw, or already know — it's kept in this claim's trail."></textarea>
+    <textarea id="ev-text" class="addev-text" placeholder="What you tested, saw, or already know, it's kept in this claim's trail."></textarea>
     <div class="addev-foot">
       <div class="seg" id="ev-kind" role="group" aria-label="Kind of note">
         <button class="seg-btn on" data-kind="context">Context</button>
@@ -663,9 +663,9 @@ function whyLine(c) {
     case 'human-approved': return 'Approved by you';
     case 'proposed': return c.proposed_by ? `Proposed by ${c.proposed_by} · awaiting your review` : 'Awaiting your review';
     case 'supported': return 'Supported by evidence, not yet verified';
-    case 'stale': return 'Confidence expired — needs a re-test';
+    case 'stale': return 'Confidence expired, needs a re-test';
     case 'disproven':
-    case 'tested-failed': return 'Tested and failed — kept as a warning';
+    case 'tested-failed': return 'Tested and failed, kept as a warning';
     case 'rejected': return 'Rejected';
     default: return '';
   }
@@ -679,7 +679,7 @@ function decayText(c) {
   if (days > 14) return { cls: 'd-ok', text: `Fresh for ${days} more days` };
   if (days >= 0) return { cls: 'd-warn', text: days === 0 ? 'Expires today' : `Expires in ${days} day${days === 1 ? '' : 's'}` };
   const ago = -days;
-  return { cls: 'd-bad', text: `Expired ${ago} day${ago === 1 ? '' : 's'} ago — needs a re-test` };
+  return { cls: 'd-bad', text: `Expired ${ago} day${ago === 1 ? '' : 's'} ago, needs a re-test` };
 }
 
 /* ---------------- interactions ---------------- */
@@ -892,9 +892,9 @@ async function rerun(id, btn) {
   btn.disabled = false;
   if (!s) return;
   if (r.outcome === 'confirmed')
-    s.innerHTML = `<span class="rc-ok">${icon('check', 13)} Re-ran just now — still matches</span>`;
+    s.innerHTML = `<span class="rc-ok">${icon('check', 13)} Re-ran just now, still matches</span>`;
   else if (r.outcome === 'refuted')
-    s.innerHTML = `<span class="rc-bad">${icon('alert', 13)} Re-ran — the result changed; this claim should be disputed</span>`;
+    s.innerHTML = `<span class="rc-bad">${icon('alert', 13)} Re-ran, the result changed; this claim should be disputed</span>`;
   else
     s.innerHTML = `<span class="rc-muted">${icon('robot', 13)} Can't re-fetch from the server (this source needs an agent or a paid API). Ask an agent to re-run.</span>`;
 }
